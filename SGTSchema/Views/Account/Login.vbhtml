@@ -6,9 +6,10 @@ End Code
 <!-- iCheck -->
 @Styles.Render("~/plugins/iCheck/square/blue.css")
 
-<h2>@ViewBag.Title.</h2>
-
 <div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>SGTSchema</b></a>
+    </div>
     <div class="login-box-body">
         <section id="loginForm">
             @Using Html.BeginForm("Login", "Account", New With {.ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, New With {.role = "form"})

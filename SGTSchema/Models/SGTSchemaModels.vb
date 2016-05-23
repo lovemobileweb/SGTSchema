@@ -419,10 +419,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="MonOpen")>
+    <OpenCloseTimeAttribute("MonCheckBox", "MonClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than MonClose")>
     Public Property MonOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="MonClose")>
+    <OpenCloseTimeAttribute("MonCheckBox", "MonOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than MonOpen")>
     Public Property MonClose As String
 
     <Display(Name:="Tuesday Check")>
@@ -430,10 +432,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="TueOpen")>
+    <OpenCloseTimeAttribute("TueCheckBox", "TueClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than TueClose")>
     Public Property TueOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="TueClose")>
+    <OpenCloseTimeAttribute("TueCheckBox", "TueOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than TueOpen")>
     Public Property TueClose As String
 
     <Display(Name:="Wednesday Check")>
@@ -441,10 +445,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="WedOpen")>
+    <OpenCloseTimeAttribute("WedCheckBox", "WedClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than WedClose")>
     Public Property WedOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="WedClose")>
+    <OpenCloseTimeAttribute("WedCheckBox", "WedOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than WedOpen")>
     Public Property WedClose As String
 
     <Display(Name:="Thursday Check")>
@@ -452,10 +458,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="ThuOpen")>
+    <OpenCloseTimeAttribute("ThuCheckBox", "ThuClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than ThuClose")>
     Public Property ThuOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="ThuClose")>
+    <OpenCloseTimeAttribute("ThuCheckBox", "ThuOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than ThuOpen")>
     Public Property ThuClose As String
 
     <Display(Name:="Friday Check")>
@@ -463,10 +471,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="FriOpen")>
+    <OpenCloseTimeAttribute("FriCheckBox", "FriClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than FriClose")>
     Public Property FriOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="FriClose")>
+    <OpenCloseTimeAttribute("FriCheckBox", "FriOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than FriOpen")>
     Public Property FriClose As String
 
     <Display(Name:="Saturday Check")>
@@ -474,10 +484,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="SatOpen")>
+    <OpenCloseTimeAttribute("SatCheckBox", "SatClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than SatClose")>
     Public Property SatOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="SatClose")>
+    <OpenCloseTimeAttribute("SatCheckBox", "SatOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than SatOpen")>
     Public Property SatClose As String
 
     <Display(Name:="Sunday Check")>
@@ -485,10 +497,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="SunOpen")>
+    <OpenCloseTimeAttribute("SunCheckBox", "SunClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than SunClose")>
     Public Property SunOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="SunClose")>
+    <OpenCloseTimeAttribute("SunCheckBox", "SunOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than SunOpen")>
     Public Property SunClose As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>

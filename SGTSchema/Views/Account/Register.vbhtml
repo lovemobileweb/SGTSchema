@@ -3,9 +3,10 @@
     ViewBag.Title = "Register"
 End Code
 
-<h2>@ViewBag.Title.</h2>
-
 <div class="register-box">
+    <div class="login-logo">
+        <a href="#"><b>SGTSchema</b></a>
+    </div>
     <div class="register-box-body">
         <section id="registerForm">
             @Using Html.BeginForm("Register", "Account", FormMethod.Post, New With {.role = "form"})
