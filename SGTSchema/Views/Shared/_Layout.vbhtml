@@ -6,31 +6,33 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/bootstrap")
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/AdminLTE.css")
+    @Styles.Render("~/Content/skins/_all-skins.min.css")
+    @Styles.Render("~/Content/bootstrap3-wysihtml5.css")
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
 </head>
-<body class="hold-transition register-page">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("SGTSchema", "Index", "SGTSchema", New With {.area = ""}, New With {.class = "navbar-brand"})
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "SGTSchema")</li>
-                </ul>
+<body class="sidebar-mini wysihtml5-supported">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <a href="@Url.Action("Index", "SGTSchema")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>SGT</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>SGTSchema</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
                 @Html.Partial("_LoginPartial")
-            </div>
-        </div>
+            </nav>
+        </header>
+
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -41,7 +43,12 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery-ui-1.11.4.js")
+    @Scripts.Render("~/Scripts/bootstrap3-wysihtml5.all.js")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/pages/dashboard.js")
+    @Scripts.Render("~/Scripts/app.js")
+    @Scripts.Render("~/Scripts/demo.js")
     @RenderSection("scripts", required:=False)
 </body>
 </html>

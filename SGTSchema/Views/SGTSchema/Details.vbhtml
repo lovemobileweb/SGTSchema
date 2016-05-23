@@ -9,6 +9,7 @@
         FuncName = "Create"
         ViewData("Title") = "Create SGTSchema"
     End If
+    Html.EnableUnobtrusiveJavaScript(True)
 End Code
 
 <div Class="jumbotron">
@@ -217,6 +218,40 @@ End Code
         <div class="col-md-2">
             @Html.TextBoxFor(Function(m) m.FriClose, New With {.class = "form-control timepicker"})
             @Html.ValidationMessageFor(Function(m) m.FriClose, "", New With {.class = "text-danger"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Function(m) m.SatCheckBox, New With {.class = "col-md-2 control-label"})
+        <div class="col-md-2">
+            @Html.CheckBoxFor(Function(m) m.SatCheckBox)
+            @Html.ValidationMessageFor(Function(m) m.SatCheckBox, "", New With {.class = "text-danger"})
+        </div>
+        @Html.LabelFor(Function(m) m.SatOpen, New With {.class = "col-md-2 control-label"})
+        <div class="col-md-2">
+            @Html.TextBoxFor(Function(m) m.SatOpen, New With {.class = "form-control timepicker"})
+            @Html.ValidationMessageFor(Function(m) m.SatOpen, "", New With {.class = "text-danger"})
+        </div>
+        @Html.LabelFor(Function(m) m.SatClose, New With {.class = "col-md-2 control-label"})
+        <div class="col-md-2">
+            @Html.TextBoxFor(Function(m) m.SatClose, New With {.class = "form-control timepicker"})
+            @Html.ValidationMessageFor(Function(m) m.SatClose, "", New With {.class = "text-danger"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Function(m) m.SunCheckBox, New With {.class = "col-md-2 control-label"})
+        <div class="col-md-2">
+            @Html.CheckBoxFor(Function(m) m.SunCheckBox)
+            @Html.ValidationMessageFor(Function(m) m.SunCheckBox, "", New With {.class = "text-danger"})
+        </div>
+        @Html.LabelFor(Function(m) m.SunOpen, New With {.class = "col-md-2 control-label"})
+        <div class="col-md-2">
+            @Html.TextBoxFor(Function(m) m.SunOpen, New With {.class = "form-control timepicker"})
+            @Html.ValidationMessageFor(Function(m) m.SunOpen, "", New With {.class = "text-danger"})
+        </div>
+        @Html.LabelFor(Function(m) m.SunClose, New With {.class = "col-md-2 control-label"})
+        <div class="col-md-2">
+            @Html.TextBoxFor(Function(m) m.SunClose, New With {.class = "form-control timepicker"})
+            @Html.ValidationMessageFor(Function(m) m.SunClose, "", New With {.class = "text-danger"})
         </div>
     </div>
     <div class="form-group">
@@ -664,17 +699,33 @@ End Using
 
 @Section Scripts
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/Scripts/jquery-ui-1.11.4.js")
     @Scripts.Render("~/Scripts/jquery-ui-sliderAccess.js")
     @Scripts.Render("~/Scripts/jquery-ui-timepicker-addon.js")
+    @Scripts.Render("~/Scripts/date.js")
+
     <script type="text/javascript">
-        $(function () { // will trigger when the document is ready
-            $('.timepicker').timepicker({
-                hourGrid: 4,
-                minuteGrid: 10,
-                timeFormat: 'hh:mm tt'
-            });
-            onSelectCountry($('.my-country')[0]);
+        $.validator.addMethod("openclosetime", function (value, element, params) {
+            if ($(element).val() == '') return true;
+
+            var $enable = $('#' + params.enable);
+            if ($enable.is(":checked") != true)
+                return true;
+            var $other = $('#' + params.other);
+            var time1 = getDateFromFormat("2016-05-01 " + $(element).val(), "yyyy-MM-dd hh:mm a");
+            var time2 = getDateFromFormat("2016-05-01 " + $other.val(), "yyyy-MM-dd hh:mm a");
+
+            if (((params.comp == "isequalorgreater") && (time1 < time2)) || ((params.comp == "isequalorsmaller") && (time1 > time2)))
+                return false;
+            return true;
+        });
+        $.validator.unobtrusive.adapters.add("openclosetime", ["enable", "other", "comp"], function (options) {
+            options.rules['openclosetime'] = true;
+            options.rules['openclosetime'] = {
+                enable: options.params.enable,
+                other: options.params.other,
+                comp: options.params.comp
+            };
+            options.messages['openclosetime'] = options.message;
         });
         function onSelectCountry(obj)
         {
@@ -693,6 +744,73 @@ End Using
             else if (selectedValue == "UK")
                 $('.my-ukstate').show();
         }
+        $('#MonFriCheckBox').click(function () {
+            var $this = $(this);
+            var bMonFri = $this.is(':checked');
+
+            $('#MonFriOpen').prop('disabled', !bMonFri);
+            $('#MonFriClose').prop('disabled', !bMonFri);
+
+            $('#MonCheckBox').prop('disabled', bMonFri);
+            $('#MonOpen').prop('disabled', bMonFri);
+            $('#MonClose').prop('disabled', bMonFri);
+            $('#TueCheckBox').prop('disabled', bMonFri);
+            $('#TueOpen').prop('disabled', bMonFri);
+            $('#TueClose').prop('disabled', bMonFri);
+            $('#WedCheckBox').prop('disabled', bMonFri);
+            $('#WedOpen').prop('disabled', bMonFri);
+            $('#WedClose').prop('disabled', bMonFri);
+            $('#ThuCheckBox').prop('disabled', bMonFri);
+            $('#ThuOpen').prop('disabled', bMonFri);
+            $('#ThuClose').prop('disabled', bMonFri);
+            $('#FriCheckBox').prop('disabled', bMonFri);
+            $('#FriOpen').prop('disabled', bMonFri);
+            $('#FriClose').prop('disabled', bMonFri);
+            $('#SatCheckBox').prop('disabled', bMonFri);
+            $('#SatOpen').prop('disabled', bMonFri);
+            $('#SatClose').prop('disabled', bMonFri);
+            $('#SunCheckBox').prop('disabled', bMonFri);
+            $('#SunOpen').prop('disabled', bMonFri);
+            $('#SunClose').prop('disabled', bMonFri);
+
+            if (bMonFri) {
+                $('#MonCheckBox').prop('checked', false);
+                $('#TueCheckBox').prop('checked', false);
+                $('#WedCheckBox').prop('checked', false);
+                $('#ThuCheckBox').prop('checked', false);
+                $('#FriCheckBox').prop('checked', false);
+                $('#SatCheckBox').prop('checked', false);
+                $('#SunCheckBox').prop('checked', false);
+            }
+        });
+        function onClickTimeCheck(event) {
+            var bChecked = $('#' + event.data.check).is(':checked');
+            $('#' + event.data.open).prop('disabled', !bChecked);
+            $('#' + event.data.close).prop('disabled', !bChecked);
+        }
+        $('#MonCheckBox').click({check:'MonCheckBox', open:'MonOpen', close:'MonClose'}, onClickTimeCheck);
+        $('#TueCheckBox').click({ check: 'TueCheckBox', open: 'TueOpen', close: 'TueClose' }, onClickTimeCheck);
+        $('#WedCheckBox').click({ check: 'WedCheckBox', open: 'WedOpen', close: 'WedClose' }, onClickTimeCheck);
+        $('#ThuCheckBox').click({ check: 'ThuCheckBox', open: 'ThuOpen', close: 'ThuClose' }, onClickTimeCheck);
+        $('#FriCheckBox').click({ check: 'FriCheckBox', open: 'FriOpen', close: 'FriClose' }, onClickTimeCheck);
+        $('#SatCheckBox').click({ check: 'SatCheckBox', open: 'SatOpen', close: 'SatClose' }, onClickTimeCheck);
+        $('#SunCheckBox').click({ check: 'SunCheckBox', open: 'SunOpen', close: 'SunClose' }, onClickTimeCheck);
+        $(function () { // will trigger when the document is ready
+            $('.timepicker').timepicker({
+                hourGrid: 4,
+                minuteGrid: 10,
+                timeFormat: 'hh:mm tt'
+            });
+            onSelectCountry($('.my-country')[0]);
+            onClickTimeCheck({ data: { check: 'MonFriCheckBox', open: 'MonFriOpen', close: 'MonFriClose' }});
+            onClickTimeCheck({ data: { check: 'MonCheckBox', open: 'MonOpen', close: 'MonClose' } });
+            onClickTimeCheck({ data: { check: 'TueCheckBox', open: 'TueOpen', close: 'TueClose' } });
+            onClickTimeCheck({ data: { check: 'WedCheckBox', open: 'WedOpen', close: 'WedClose' } });
+            onClickTimeCheck({ data: { check: 'ThuCheckBox', open: 'ThuOpen', close: 'ThuClose' } });
+            onClickTimeCheck({ data: { check: 'FriCheckBox', open: 'FriOpen', close: 'FriClose' } });
+            onClickTimeCheck({ data: { check: 'SatCheckBox', open: 'SatOpen', close: 'SatClose' } });
+            onClickTimeCheck({ data: { check: 'SunCheckBox', open: 'SunOpen', close: 'SunClose' } });
+        });
     </script>
 End Section
 

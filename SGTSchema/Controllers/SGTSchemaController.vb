@@ -284,7 +284,7 @@ Public Class SGTSchemaController
                 ModelState.AddModelError("", "Unable to save changes. Try again, And If the problem persists see your system administrator.")
             End Try
         End If
-        Return View(sgtschemaToUpdate)
+        Return View("Details", sgtschemaToUpdate)
     End Function
 
 End Class

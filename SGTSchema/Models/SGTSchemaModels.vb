@@ -406,10 +406,12 @@ Public Class SGTSchemaModel
 
     <DataType(DataType.Text)>
     <Display(Name:="MonFriOpen")>
+    <OpenCloseTimeAttribute("MonFriCheckBox", "MonFriClose", Comparison.IsEqualOrSmaller, ErrorMessage:="The {0} must be equal or smaller than MonFriClose")>
     Public Property MonFriOpen As String
 
     <DataType(DataType.Text)>
     <Display(Name:="MonFriClose")>
+    <OpenCloseTimeAttribute("MonFriCheckBox", "MonFriOpen", Comparison.IsEqualOrGreater, ErrorMessage:="The {0} must be equal or greater than MonFriOpen")>
     Public Property MonFriClose As String
 
     <Display(Name:="Monday Check")>
@@ -467,6 +469,28 @@ Public Class SGTSchemaModel
     <Display(Name:="FriClose")>
     Public Property FriClose As String
 
+    <Display(Name:="Saturday Check")>
+    Public Property SatCheckBox As Boolean
+
+    <DataType(DataType.Text)>
+    <Display(Name:="SatOpen")>
+    Public Property SatOpen As String
+
+    <DataType(DataType.Text)>
+    <Display(Name:="SatClose")>
+    Public Property SatClose As String
+
+    <Display(Name:="Sunday Check")>
+    Public Property SunCheckBox As Boolean
+
+    <DataType(DataType.Text)>
+    <Display(Name:="SunOpen")>
+    Public Property SunOpen As String
+
+    <DataType(DataType.Text)>
+    <Display(Name:="SunClose")>
+    Public Property SunClose As String
+
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="City 1")>
@@ -513,41 +537,42 @@ Public Class SGTSchemaModel
     Public Property cCity9 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
+    <Url>
     <Display(Name:="Facebook")>
     Public Property cFB As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
+    <Url>
     <Display(Name:="Google+")>
     Public Property cGPlus As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
+    <Url>
     <Display(Name:="Twitter")>
     Public Property cTwitter As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
+    <Url>
     <Display(Name:="LinkedIn")>
     Public Property cLinkedIn As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
+    <Url>
     <Display(Name:="Youtube")>
     Public Property cYT As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
+    <Url>
     <Display(Name:="Pinterest")>
     Public Property cPinterest As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property cYouTube As String
 
-    <StringLength(260, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=0)>
+    <StringLength(260, ErrorMessage:="The {0} must be at least {2} characters Long.", MinimumLength:=0)>
     <DataType(DataType.ImageUrl)>
     <Display(Name:="Image")>
     Public Property cImage As String
@@ -555,13 +580,13 @@ Public Class SGTSchemaModel
     <Display(Name:="Schema Only")>
     Public Property SchemaCheckBox As Boolean
 
-    <Display(Name:="Pages for Categories")>
+    <Display(Name:="Pages For Categories")>
     Public Property PagesCheckBox As Boolean
 
     <Display(Name:="Spun Content")>
     Public Property SpunCheckBox As Boolean
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
+    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters Long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service Category (e.g. Landscape Services, Auto Repair Services, Attorney)")>
     Public Property cServiceCat As String
@@ -569,6 +594,7 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 1")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService1 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -584,11 +610,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 1")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid1 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 2")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService2 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -604,11 +632,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 2")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid2 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 3")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService3 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -624,11 +654,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 3")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid3 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 4")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService4 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -644,11 +676,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 4")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid4 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 5")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService5 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -664,11 +698,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 5")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid5 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 6")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService6 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -684,11 +720,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 6")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid6 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 7")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService7 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -704,11 +742,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 7")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid7 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 8")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService8 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -724,11 +764,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 8")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid8 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 9")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService9 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -744,11 +786,13 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 9")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid9 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 10")>
+    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
     Public Property cService10 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
@@ -764,35 +808,33 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 10")>
+    <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid10 As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.MultilineText)>
     <Display(Name:="Name 1")>
     Public Property cLinkName1 As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.MultilineText)>
+    <Url>
     <Display(Name:="URL 1")>
     Public Property cLinkURL1 As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.MultilineText)>
     <Display(Name:="Name 2")>
     Public Property cLinkName2 As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.MultilineText)>
+    <Url>
     <Display(Name:="URL 2")>
     Public Property cLinkURL2 As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.MultilineText)>
     <Display(Name:="Name 3")>
     Public Property cLinkName3 As String
 
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.MultilineText)>
+    <Url>
     <Display(Name:="URL 3")>
     Public Property cLinkURL3 As String
 
