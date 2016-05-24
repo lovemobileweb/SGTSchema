@@ -234,10 +234,12 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="App_Start\Startup.Auth.vb" />
     <Compile Include="Controllers\AccountController.vb" />
+    <Compile Include="Controllers\ArticlesController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Article.vb" />
     <Compile Include="Models\SGTSchemaModels.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
@@ -283,6 +285,7 @@
     <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -452,6 +455,14 @@
     <Content Include="Views\Shared\Lockout.vbhtml" />
     <Content Include="Views\Shared\_LoginPartial.vbhtml" />
     <Content Include="Views\SGTSchema\Details.vbhtml" />
+    <Content Include="Views\Shared\_Header.vbhtml" />
+    <Content Include="Views\Shared\_DashboardMenu.vbhtml" />
+    <Content Include="Views\Articles\Create.vbhtml" />
+    <Content Include="Views\Articles\Delete.vbhtml" />
+    <Content Include="Views\Articles\Details.vbhtml" />
+    <Content Include="Views\Articles\Edit.vbhtml" />
+    <Content Include="Views\Articles\Index.vbhtml" />
+    <Content Include="Views\Shared\_Footer.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
