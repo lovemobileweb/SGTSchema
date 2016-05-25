@@ -1,4 +1,8 @@
-﻿<aside class="main-sidebar">
+﻿@Scripts.Render("~/Scripts/pages/dashboard.js")
+@Scripts.Render("~/Scripts/app.js")
+@Scripts.Render("~/Scripts/demo.js")
+
+<aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar" style="height: auto;">
         <!-- sidebar menu: : style can be found in sidebar.less -->

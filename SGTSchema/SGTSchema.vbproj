@@ -236,9 +236,11 @@
     <Compile Include="Controllers\AccountController.vb" />
     <Compile Include="Controllers\ArticlesController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
+    <Compile Include="Controllers\CompanyController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyModels.vb" />
     <Compile Include="Models\Article.vb" />
     <Compile Include="Models\SGTSchemaModels.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
@@ -463,6 +465,8 @@
     <Content Include="Views\Articles\Edit.vbhtml" />
     <Content Include="Views\Articles\Index.vbhtml" />
     <Content Include="Views\Shared\_Footer.vbhtml" />
+    <Content Include="Views\Company\Details.vbhtml" />
+    <Content Include="Views\Company\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

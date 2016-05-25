@@ -583,6 +583,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property cYouTube As String
 
@@ -624,6 +625,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 1")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid1 As String
 
@@ -646,6 +648,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 2")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid2 As String
 
@@ -668,6 +671,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 3")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid3 As String
 
@@ -690,6 +694,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 4")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid4 As String
 
@@ -712,6 +717,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 5")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid5 As String
 
@@ -734,6 +740,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 6")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid6 As String
 
@@ -756,6 +763,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 7")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid7 As String
 
@@ -778,6 +786,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 8")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid8 As String
 
@@ -800,6 +809,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 9")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid9 As String
 
@@ -822,6 +832,7 @@ Public Class SGTSchemaModel
     <StringLength(4096, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.MultilineText)>
     <Display(Name:="Video Embed Code 10")>
+    <AllowHtml>
     <RegularExpression("<iframe.*?>.*?<\/iframe>", ErrorMessage:="The {0} should be valid iframe code. &lt;iframe&gt;...&lt;/iframe&gt;")>
     Public Property sVid10 As String
 
