@@ -27,6 +27,8 @@ Public Class ApplicationDbContext
     End Sub
 
     Public Property SGTSchemas() As DbSet(Of SGTSchemaModel)
+    Public Property Articles As DbSet(Of Article)
+    Public Property Schemas As DbSet(Of SchemaOnlyModel)
 
     Public Shared Function Create() As ApplicationDbContext
         Return New ApplicationDbContext()

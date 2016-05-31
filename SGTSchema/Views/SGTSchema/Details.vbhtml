@@ -56,13 +56,6 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(Function(m) m.cHomeContent, New With {.class = "col-md-2 control-label"})
-            <div class="col-md-10">
-                @Html.TextAreaFor(Function(m) m.cHomeContent, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.cHomeContent, "", New With {.class = "text-danger"})
-            </div>
-        </div>
-        <div class="form-group">
             @Html.LabelFor(Function(m) m.cAddress, New With {.class = "col-md-2 control-label"})
             <div class="col-md-10">
                 @Html.TextBoxFor(Function(m) m.cAddress, New With {.class = "form-control"})
@@ -89,7 +82,7 @@ End Code
                 @Html.DropDownListFor(Function(m) m.cbCountry, New SelectList([Enum].GetValues(GetType(Country))), "Select ...", New With {.class = "my-country form-control", .onchange = "onSelectCountry(this)"})
                 @Html.ValidationMessageFor(Function(m) m.cbCountry, "", New With {.class = "text-danger"})
             </div>
-            <div class="my-usstate col-md-8" style="display:none;">
+            <div class="my-usstate col-md-8" style="display: none;">
                 @Html.LabelFor(Function(m) m.cUSState, New With {.class = "col-md-3 control-label"})
                 <div class="col-md-3">
                     @Html.DropDownListFor(Function(m) m.cUSState, New SelectList([Enum].GetValues(GetType(USState))), "Select ...", New With {.class = "form-control"})
@@ -265,63 +258,6 @@ End Code
                 @Html.ValidationMessageFor(Function(m) m.SunClose, "", New With {.class = "text-danger"})
             </div>
         </div>
-        <!--div class="form-group">
-            @Html.Label("City or City ST or City ST Zip", New With {.class = "col-md-3 control-label"})
-            <input type="button" value="Generate List of Cities" class="btn btn-default" />
-        </div>
-        <div>
-            <div class="form-group">
-                @Html.LabelFor(Function(m) m.cCity1, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity1, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity1, "", New With {.class = "text-danger"})
-                </div>
-                @Html.LabelFor(Function(m) m.cCity2, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity2, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity2, "", New With {.class = "text-danger"})
-                </div>
-                @Html.LabelFor(Function(m) m.cCity2, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity3, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity3, "", New With {.class = "text-danger"})
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(Function(m) m.cCity4, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity4, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity4, "", New With {.class = "text-danger"})
-                </div>
-                @Html.LabelFor(Function(m) m.cCity5, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity5, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity5, "", New With {.class = "text-danger"})
-                </div>
-                @Html.LabelFor(Function(m) m.cCity6, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity6, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity6, "", New With {.class = "text-danger"})
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(Function(m) m.cCity7, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity7, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity7, "", New With {.class = "text-danger"})
-                </div>
-                @Html.LabelFor(Function(m) m.cCity8, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity8, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity8, "", New With {.class = "text-danger"})
-                </div>
-                @Html.LabelFor(Function(m) m.cCity9, New With {.class = "col-md-2 control-label"})
-                <div class="col-md-2">
-                    @Html.TextBoxFor(Function(m) m.cCity9, New With {.class = "form-control"})
-                    @Html.ValidationMessageFor(Function(m) m.cCity9, "", New With {.class = "text-danger"})
-                </div>
-            </div>
-        </div-->
         <div>
             <div class="form-group">
                 @Html.Label("Social Profiles", New With {.class = "col-md-2 control-label"})
@@ -377,27 +313,30 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(Function(m) m.SchemaCheckBox, New With {.class = "col-md-2 control-label"})
-            <div class="col-md-1">
-                @Html.CheckBoxFor(Function(m) m.SchemaCheckBox)
-                @Html.ValidationMessageFor(Function(m) m.SchemaCheckBox, "", New With {.class = "text-danger"})
-            </div>
-            @Html.LabelFor(Function(m) m.PagesCheckBox, New With {.class = "col-md-3 control-label"})
-            <div class="col-md-1">
-                @Html.CheckBoxFor(Function(m) m.PagesCheckBox)
-                @Html.ValidationMessageFor(Function(m) m.PagesCheckBox, "", New With {.class = "text-danger"})
-            </div>
             @Html.LabelFor(Function(m) m.SpunCheckBox, New With {.class = "col-md-2 control-label"})
             <div class="col-md-1">
                 @Html.CheckBoxFor(Function(m) m.SpunCheckBox)
                 @Html.ValidationMessageFor(Function(m) m.SpunCheckBox, "", New With {.class = "text-danger"})
             </div>
+            @Html.LabelFor(Function(m) m.cServiceCat, New With {.class = "col-md-4 control-label"})
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceCat, DirectCast(ViewBag.NicheList, IEnumerable(Of SelectListItem)), "-- Select Category --", New With {.class = "form-control"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceCat, "", New With {.class = "text-danger"})
+            </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(Function(m) m.cServiceCat, New With {.class = "col-md-7 control-label"})
+            @Html.LabelFor(Function(m) m.SpunCheckBoxHomePageTxt, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-1">
+                @Html.CheckBoxFor(Function(m) m.SpunCheckBoxHomePageTxt)
+                @Html.ValidationMessageFor(Function(m) m.SpunCheckBoxHomePageTxt, "", New With {.class = "text-danger"})
+            </div>
+            @Html.LabelFor(Function(m) m.cHomeContent, New With {.class = "col-md-1 control-label"})
+            <div class="col-md-3">
+                @Html.DropDownListFor(Function(m) m.cHomeContent, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cHomeContent, "", New With {.class = "text-danger"})
+            </div>
             <div class="col-md-5">
-                @Html.TextBoxFor(Function(m) m.cServiceCat, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.cServiceCat, "", New With {.class = "text-danger"})
+                @Html.TextArea("HomePageTxt", "", New With {.class = "form-control", .readonly = "ReadOnly"})
             </div>
         </div>
         <div class="form-group">
@@ -417,14 +356,34 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            @Html.LabelFor(Function(m) m.cServiceSpunCheckBox1, New With {.class = "col-md-2 control-label"})
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat1, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat1, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox1)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox1, "", New With {.class = "text-danger"})
             </div>
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat2, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat2, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox2)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox2, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(m) m.cServiceTxt1, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt1, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt1, "", New With {.class = "text-danger"})
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt2, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt2, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt1", "", New With {.class = "form-control", .readonly = "ReadOnly"})
+            </div>
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt2", "", New With {.class = "form-control", .readonly = "ReadOnly"})
             </div>
         </div>
         <div class="form-group">
@@ -468,14 +427,34 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            @Html.LabelFor(Function(m) m.cServiceSpunCheckBox3, New With {.class = "col-md-2 control-label"})
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat3, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat3, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox3)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox3, "", New With {.class = "text-danger"})
             </div>
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat4, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat4, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox4)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox4, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(m) m.cServiceTxt3, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt3, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt3, "", New With {.class = "text-danger"})
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt4, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt4, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt3", "", New With {.class = "form-control", .readonly = "ReadOnly"})
+            </div>
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt4", "", New With {.class = "form-control", .readonly = "ReadOnly"})
             </div>
         </div>
         <div class="form-group">
@@ -519,14 +498,34 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            @Html.LabelFor(Function(m) m.cServiceSpunCheckBox5, New With {.class = "col-md-2 control-label"})
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat5, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat5, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox5)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox5, "", New With {.class = "text-danger"})
             </div>
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat6, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat6, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox6)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox6, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(m) m.cServiceTxt5, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt5, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt5, "", New With {.class = "text-danger"})
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt6, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt6, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt5", "", New With {.class = "form-control", .readonly = "ReadOnly"})
+            </div>
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt6", "", New With {.class = "form-control", .readonly = "ReadOnly"})
             </div>
         </div>
         <div class="form-group">
@@ -570,14 +569,34 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            @Html.LabelFor(Function(m) m.cServiceSpunCheckBox7, New With {.class = "col-md-2 control-label"})
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat7, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat7, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox7)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox7, "", New With {.class = "text-danger"})
             </div>
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat8, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat8, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox8)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox8, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(m) m.cServiceTxt7, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt7, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt7, "", New With {.class = "text-danger"})
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt8, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt8, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt7", "", New With {.class = "form-control", .readonly = "ReadOnly"})
+            </div>
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt8", "", New With {.class = "form-control", .readonly = "ReadOnly"})
             </div>
         </div>
         <div class="form-group">
@@ -621,14 +640,34 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            @Html.LabelFor(Function(m) m.cServiceSpunCheckBox9, New With {.class = "col-md-2 control-label"})
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat9, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat9, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox9)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox9, "", New With {.class = "text-danger"})
             </div>
             <div class="col-md-5">
-                @Html.TextAreaFor(Function(m) m.sCat10, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.sCat10, "", New With {.class = "text-danger"})
+                @Html.CheckBoxFor(Function(m) m.cServiceSpunCheckBox10)
+                @Html.ValidationMessageFor(Function(m) m.cServiceSpunCheckBox10, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(m) m.cServiceTxt9, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt9, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt9, "", New With {.class = "text-danger"})
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownListFor(Function(m) m.cServiceTxt10, DirectCast(ViewBag.ArticleList, IEnumerable(Of SelectListItem)), "-- Select Article --", New With {.class = "form-control article-list"})
+                @Html.ValidationMessageFor(Function(m) m.cServiceTxt10, "", New With {.class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Txt", New With {.class = "col-md-2 control-label"})
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt9", "", New With {.class = "form-control", .readonly = "ReadOnly"})
+            </div>
+            <div class="col-md-5">
+                @Html.TextArea("ServiceTxt10", "", New With {.class = "form-control", .readonly = "ReadOnly"})
             </div>
         </div>
         <div class="form-group">
@@ -701,7 +740,7 @@ End Code
         </div>
     </text>
     End Using
-    <div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
 </section>
@@ -718,11 +757,11 @@ End Code
             if ($(element).val() == '') return true;
 
             var $enable = $('#' + params.enable);
-            if ($enable.is(":checked") != true)
+            if ($enable.is(": checked") != true)
                 return true;
             var $other = $('#' + params.other);
-            var time1 = getDateFromFormat("2016-05-01 " + $(element).val(), "yyyy-MM-dd hh:mm a");
-            var time2 = getDateFromFormat("2016-05-01 " + $other.val(), "yyyy-MM-dd hh:mm a");
+            var time1 = getDateFromFormat("2016-05-01 " + $(element).val(), "yyyy-MM-dd hh: mm a");
+            var time2 = getDateFromFormat("2016-05-01 " + $other.val(), "yyyy-MM-dd hh: mm a");
 
             if (((params.comp == "isequalorgreater") && (time1 < time2)) || ((params.comp == "isequalorsmaller") && (time1 > time2)))
                 return false;
@@ -798,13 +837,13 @@ End Code
                 $('#SunCheckBox').prop('checked', false);
             }
 
-            onClickTimeCheck({ data: { check: 'MonCheckBox', open: 'MonOpen', close: 'MonClose' } });
-            onClickTimeCheck({ data: { check: 'TueCheckBox', open: 'TueOpen', close: 'TueClose' } });
-            onClickTimeCheck({ data: { check: 'WedCheckBox', open: 'WedOpen', close: 'WedClose' } });
-            onClickTimeCheck({ data: { check: 'ThuCheckBox', open: 'ThuOpen', close: 'ThuClose' } });
-            onClickTimeCheck({ data: { check: 'FriCheckBox', open: 'FriOpen', close: 'FriClose' } });
-            onClickTimeCheck({ data: { check: 'SatCheckBox', open: 'SatOpen', close: 'SatClose' } });
-            onClickTimeCheck({ data: { check: 'SunCheckBox', open: 'SunOpen', close: 'SunClose' } });
+            onClickTimeCheck({ data:  { check: 'MonCheckBox', open: 'MonOpen', close: 'MonClose' } });
+            onClickTimeCheck({ data:  { check: 'TueCheckBox', open: 'TueOpen', close: 'TueClose' } });
+            onClickTimeCheck({ data:  { check: 'WedCheckBox', open: 'WedOpen', close: 'WedClose' } });
+            onClickTimeCheck({ data:  { check: 'ThuCheckBox', open: 'ThuOpen', close: 'ThuClose' } });
+            onClickTimeCheck({ data:  { check: 'FriCheckBox', open: 'FriOpen', close: 'FriClose' } });
+            onClickTimeCheck({ data:  { check: 'SatCheckBox', open: 'SatOpen', close: 'SatClose' } });
+            onClickTimeCheck({ data:  { check: 'SunCheckBox', open: 'SunOpen', close: 'SunClose' } });
         }
         $(function () { // will trigger when the document is ready
             $('.timepicker').timepicker({
@@ -827,9 +866,55 @@ End Code
             $('#FriCheckBox').next().click({ check: 'FriCheckBox', open: 'FriOpen', close: 'FriClose' }, onClickTimeCheck);
             $('#SatCheckBox').next().click({ check: 'SatCheckBox', open: 'SatOpen', close: 'SatClose' }, onClickTimeCheck);
             $('#SunCheckBox').next().click({ check: 'SunCheckBox', open: 'SunOpen', close: 'SunClose' }, onClickTimeCheck);
-
+            $("#cServiceCat").change(function () {
+                var articleListApi = "/SGTSchema/Articles";
+                $.getJSON(articleListApi, {
+                    niche: $("#cServiceCat").val()
+                })
+                .done(function (data) {
+                    $(".article-list").html("<option value=''>-- Select Article --</option>");
+                    $.each(data, function (i, item) {
+                        $(".article-list").html($(".article-list").html() + "<option value='" + item.Value + "'>" + item.Text + "</option>");
+                    });
+                });
+            });
+            $("#cHomeContent").change(function () {
+                var articleContentApi = "/SGTSchema/ArticleContent";
+                $.getJSON(articleContentApi, {
+                    id: $("#cHomeContent").val()
+                })
+                .done(function (data) {
+                    $("#HomePageTxt").html("");
+                    $.each(data, function (i, item) {
+                        $("#HomePageTxt").html(item.Value);
+                    });
+                });
+            });
+            $(".article-list").change(function () {
+                var articleContentApi = "/SGTSchema/ArticleContent";
+                var idDest = $(this).attr('id').substring(1, $(this).attr('id').length);
+                CallApi(articleContentApi, $(this), idDest);
+            });
+            $(".article-list").trigger("change");
             onClickMonFriCheckBox({ data: { check: 'MonFriCheckBox' } });
         });
+        function CallApi(api, obj, idDest)
+        {
+            if (obj.val() == "") {
+                $("#" + idDest).html("");
+                return;
+            }
+
+            $.getJSON(api, {
+                id: obj.val()
+            })
+            .done(function (data) {
+                $("#" + idDest).html("");
+                $.each(data, function (i, item) {
+                    $("#" + idDest).html(item.Value);
+                });
+            });
+        }
     </script>
 End Section
 

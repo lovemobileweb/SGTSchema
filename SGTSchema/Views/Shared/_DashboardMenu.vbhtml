@@ -1,4 +1,6 @@
-﻿@Scripts.Render("~/Scripts/pages/dashboard.js")
+﻿
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/pages/dashboard.js")
 @Scripts.Render("~/Scripts/app.js")
 @Scripts.Render("~/Scripts/demo.js")
 
@@ -13,8 +15,8 @@
                     <i class="fa fa-files-o"></i> <span>Build</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i> SGTSchema</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Schema Only</a></li>
+                    <li class="active"><a href="/SGTSchema/Index"><i class="fa fa-circle-o"></i> SGTSchema</a></li>
+                    <li><a href="/SchemaOnly/Index"><i class="fa fa-circle-o"></i> Schema Only</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Pages w/Schema</a></li>
                 </ul>
             </li>

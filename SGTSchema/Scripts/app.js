@@ -140,6 +140,8 @@ $.AdminLTE.options = {
 $(function () {
   "use strict";
 
+  $.AdminLTE = jQuery.extend(true, {}, AdminLTE);
+
   //Fix for IE page transitions
   $("body").removeClass("hold-transition");
 
@@ -744,3 +746,4 @@ function _init() {
     });
   };
 }(jQuery));
+var AdminLTE = jQuery.extend(true, {}, $.AdminLTE);

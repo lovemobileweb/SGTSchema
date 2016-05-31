@@ -4,6 +4,7 @@ Imports System.Data
 Imports System.Data.Entity
 Imports System.Linq
 Imports System.Net
+Imports System.Security.Claims
 Imports System.Web
 Imports System.Web.Mvc
 Imports SGTSchema
@@ -12,7 +13,7 @@ Namespace Controllers
     Public Class ArticlesController
         Inherits System.Web.Mvc.Controller
 
-        Private db As New ArticleDbContext
+        Private db As New ApplicationDbContext
 
         ' GET: Articles
         Function Index() As ActionResult
@@ -36,6 +37,20 @@ Namespace Controllers
             Return View()
         End Function
 
+        Public Function GetUserId() _
+        As String
+            Dim userIdValue = ""
+            Dim claimsIdentity As ClaimsIdentity = User.Identity
+            If (claimsIdentity IsNot Nothing) Then
+                Dim userIdClaim = claimsIdentity.Claims.FirstOrDefault(Function(x) x.Type = ClaimTypes.NameIdentifier)
+
+                If (userIdClaim IsNot Nothing) Then
+                    userIdValue = userIdClaim.Value
+                End If
+            End If
+            Return userIdValue
+        End Function
+
         ' POST: Articles/Create
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -43,6 +58,7 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(<Bind(Include:="ID,Niche,Title,Content,Spin")> ByVal article As Article) As ActionResult
             If ModelState.IsValid Then
+                article.UserID = GetUserId()
                 db.Articles.Add(article)
                 db.SaveChanges()
                 Return RedirectToAction("Index")

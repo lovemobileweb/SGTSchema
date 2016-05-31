@@ -362,10 +362,6 @@ Public Class SGTSchemaModel
     <Display(Name:="Url")>
     Public Property cUrl As String
 
-    <DataType(DataType.MultilineText)>
-    <Display(Name:="Home Page Content")>
-    Public Property cHomeContent As String
-
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Address")>
@@ -592,30 +588,31 @@ Public Class SGTSchemaModel
     <Display(Name:="Image")>
     Public Property cImage As String
 
-    <Display(Name:="Schema Only")>
-    Public Property SchemaCheckBox As Boolean
-
-    <Display(Name:="Pages For Categories")>
-    Public Property PagesCheckBox As Boolean
-
     <Display(Name:="Spun Content")>
     Public Property SpunCheckBox As Boolean
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters Long.", MinimumLength:=2)>
+    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters Long.", MinimumLength:=1)>
     <DataType(DataType.Text)>
     <Display(Name:="Service Category (e.g. Landscape Services, Auto Repair Services, Attorney)")>
     Public Property cServiceCat As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Service 1")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
-    Public Property cService1 As String
+    <Display(Name:="Spun Content")>
+    Public Property SpunCheckBoxHomePageTxt As Boolean
+
+    <Display(Name:="Home Page Txt")>
+    Public Property cHomeContent As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
-    <Display(Name:="Txt 1")>
-    Public Property sCat1 As String
+    <Display(Name:="Service 1")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
+    Public Property cService1 As String
+
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox1 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt1 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -632,13 +629,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 2")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService2 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 2")>
-    Public Property sCat2 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox2 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt2 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -655,13 +653,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 3")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService3 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 3")>
-    Public Property sCat3 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox3 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt3 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -678,13 +677,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 4")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService4 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 4")>
-    Public Property sCat4 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox4 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt4 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -701,13 +701,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 5")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService5 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 5")>
-    Public Property sCat5 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox5 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt5 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -724,13 +725,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 6")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService6 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 6")>
-    Public Property sCat6 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox6 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt6 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -747,13 +749,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 7")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService7 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 7")>
-    Public Property sCat7 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox7 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt7 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -770,13 +773,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 8")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService8 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 8")>
-    Public Property sCat8 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox8 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt8 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -793,13 +797,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 9")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService9 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 9")>
-    Public Property sCat9 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox9 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt9 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
@@ -816,13 +821,14 @@ Public Class SGTSchemaModel
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>
     <Display(Name:="Service 10")>
-    <RegularExpression("^([a-zA-Z0-9]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9")>
+    <RegularExpression("^([a-zA-Z0-9/ &]+)$", ErrorMessage:="The {0} should only be Aa - Zz, 0 - 9, &, space and dash")>
     Public Property cService10 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
-    <DataType(DataType.Text)>
-    <Display(Name:="Txt 10")>
-    Public Property sCat10 As String
+    <Display(Name:="Spun Content")>
+    Public Property cServiceSpunCheckBox10 As Boolean
+
+    <Display(Name:="Select Txt")>
+    Public Property cServiceTxt10 As Nullable(Of Integer)
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>

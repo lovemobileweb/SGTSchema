@@ -4,6 +4,9 @@ Imports System.ComponentModel.DataAnnotations
 Public Class Article
     Public Property ID As Integer
 
+    <Display(Name:="User ID")>
+    Public Property UserID As String
+
     <Required>
     <StringLength(40)>
     Public Property Niche As String
@@ -19,9 +22,4 @@ Public Class Article
 
     <Required>
     Public Property Spin As Boolean
-End Class
-Public Class ArticleDbContext
-    Inherits DbContext
-
-    Public Property Articles As DbSet(Of Article)
 End Class

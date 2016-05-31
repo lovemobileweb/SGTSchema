@@ -237,11 +237,13 @@
     <Compile Include="Controllers\ArticlesController.vb" />
     <Compile Include="Controllers\ManageController.vb" />
     <Compile Include="Controllers\CompanyController.vb" />
+    <Compile Include="Controllers\SchemaOnlyController.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CompanyModels.vb" />
     <Compile Include="Models\Article.vb" />
+    <Compile Include="Models\SchemaOnlyModels.vb" />
     <Compile Include="Models\SGTSchemaModels.vb" />
     <Compile Include="Models\AccountViewModels.vb" />
     <Compile Include="Models\IdentityModels.vb" />
@@ -467,6 +469,8 @@
     <Content Include="Views\Shared\_Footer.vbhtml" />
     <Content Include="Views\Company\Details.vbhtml" />
     <Content Include="Views\Company\Index.vbhtml" />
+    <Content Include="Views\SchemaOnly\Details.vbhtml" />
+    <Content Include="Views\SchemaOnly\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

@@ -40,18 +40,97 @@ Public Class SGTSchemaController
         Return View(sgtschemas.ToPagedList(pageNumber, pageSize))
     End Function
 
+    ' GET: /SGTSchema/Articles/5
+    Function Articles(ByVal niche As String) As JsonResult
+        If User.Identity.IsAuthenticated = False Then
+            Return Json(New With {.foo = "bar", .baz = "Blech"}, JsonRequestBehavior.AllowGet)
+        End If
+
+        Dim userID = GetUserId()
+
+        Dim query = From article In db.Articles
+                    Where article.Niche = niche And article.UserID = userID
+                    Select New With {
+                        .Text = article.Title,
+                        .Value = article.ID
+                    }
+
+        Dim ListItem As List(Of SelectListItem) = New List(Of SelectListItem)
+        For Each article In query
+            ListItem.Add(New SelectListItem With {.Text = article.Text, .Value = article.Value})
+        Next
+
+        Return Json(ListItem, JsonRequestBehavior.AllowGet)
+    End Function
+
+    ' GET: /SGTSchema/ArticleContent/5
+    Function ArticleContent(ByVal id As Integer) As JsonResult
+        If User.Identity.IsAuthenticated = False Then
+            Return Json(New With {.data = ""}, JsonRequestBehavior.AllowGet)
+        End If
+
+        Dim userID = GetUserId()
+
+        Dim query = From article In db.Articles
+                    Where article.ID = id
+                    Select New With {
+                        .Value = article.Content
+                    }
+
+        Dim ListItem As List(Of SelectListItem) = New List(Of SelectListItem)
+        For Each article In query
+            ListItem.Add(New SelectListItem With {.Value = article.Value})
+        Next
+
+        Return Json(ListItem, JsonRequestBehavior.AllowGet)
+    End Function
+
     ' GET: /SGTSchema/Details/5
     Function Details(ByVal id As Integer?) As ActionResult
         If User.Identity.IsAuthenticated = False Then
             Return RedirectToAction("Login", "Account")
         End If
+
+        Dim userID = GetUserId()
+
+        Dim query = From article In db.Articles
+                    Group article By Niche = article.Niche Into g = Group
+                    Select New With {
+                        .Text = Niche,
+                        .Value = Niche
+                    }
+
+        Dim ListItem As List(Of SelectListItem) = New List(Of SelectListItem)
+        For Each niche In query
+            ListItem.Add(New SelectListItem With {.Text = niche.Text, .Value = niche.Value})
+        Next
+
+        ViewBag.NicheList = New SelectList(ListItem, "Value", "Text", "")
+        Dim ListItem2 As List(Of SelectListItem) = New List(Of SelectListItem)
+        ViewBag.ArticleList = New SelectList(ListItem2, "Value", "Text", "")
+
         If IsNothing(id) Then
             Return View()
         End If
+
         Dim sgtschema As SGTSchemaModel = db.SGTSchemas.Find(id)
         If IsNothing(sgtschema) Then
             Return HttpNotFound()
         End If
+
+        Dim query2 = From article In db.Articles
+                     Where article.Niche = sgtschema.cServiceCat And article.UserID = userID
+                     Select New With {
+                        .Text = article.Title,
+                        .Value = article.ID
+                    }
+
+        For Each article In query2
+            ListItem2.Add(New SelectListItem With {.Text = article.Text, .Value = article.Value})
+        Next
+
+        ViewBag.ArticleList = New SelectList(ListItem2, "Value", "Text", "")
+
         Return View(sgtschema)
     End Function
 
@@ -99,7 +178,7 @@ Public Class SGTSchemaController
 
     End Function
 
-    Private Function GetUserId() _
+    Public Function GetUserId() _
         As String
         Dim userIdValue = ""
         Dim claimsIdentity As ClaimsIdentity = User.Identity
@@ -118,7 +197,7 @@ Public Class SGTSchemaController
     'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     <HttpPost(), ActionName("Create")>
     <ValidateAntiForgeryToken()>
-    Function Create(file As HttpPostedFileBase, <Bind(Include:="cbBusiness, cName, cDescription, cUrl, cHomeContent, cAddress, cAddress2, cCity, cbCountry, cUSState, cAUState, cCAState, cUKState, cZip, MonFriCheckBox, MonFriOpen, MonFriClose, MonCheckBox, MonOpen, MonClose, TueCheckBox, TueOpen, TueClose, WedCheckBox, WedOpen, WedClose, ThuCheckBox, ThuOpen, ThuClose, FriCheckBox, FriOpen, FriClose, cCity1, cCity2, cCity3, cCity4, cCity5, cCity6, cCity7, cCity8, cCity9, cFB, cGPlus, cTwitter, cLinkedIn, cYT, cPinterest, cYouTube, cImage, SchemaCheckBox, PagesCheckBox, SpunCheckBox, cServiceCat, cService1, sCat1, sPic1, sVid1, cService2, sCat2, sPic2, sVid2, cService3, sCat3, sPic3, sVid3, cService4, sCat4, sPic4, sVid4, cService5, sCat5, sPic5, sVid5, cService6, sCat6, sPic6, sVid6, cService7, sCat7, sPic7, sVid7, cService8, sCat8, sPic8, sVid8, cService9, sCat9, sPic9, sVid9, cService10, sCat10, sPic10, sVid10, cLinkName1, cLinkURL1, cLinkName2, cLinkURL2, cLinkName3, cLinkURL3")> ByVal sgtschema As SGTSchemaModel) As ActionResult
+    Function Create(file As HttpPostedFileBase, <Bind(Include:="cbBusiness, cName, cDescription, cUrl, cAddress, cAddress2, cCity, cbCountry, cUSState, cAUState, cCAState, cUKState, cZip, MonFriCheckBox, MonFriOpen, MonFriClose, MonCheckBox, MonOpen, MonClose, TueCheckBox, TueOpen, TueClose, WedCheckBox, WedOpen, WedClose, ThuCheckBox, ThuOpen, ThuClose, FriCheckBox, FriOpen, FriClose, cCity1, cCity2, cCity3, cCity4, cCity5, cCity6, cCity7, cCity8, cCity9, cFB, cGPlus, cTwitter, cLinkedIn, cYT, cPinterest, cYouTube, cImage, SpunCheckBox, cServiceCat, SpunCheckBoxHomePageTxt, cHomeContent, cService1, cServiceSpunCheckBox1, cServiceTxt1, sPic1, sVid1, cService2, cServiceSpunCheckBox2, cServiceTxt2, sPic2, sVid2, cService3, cServiceSpunCheckBox3, cServiceTxt3, sPic3, sVid3, cService4, cServiceSpunCheckBox4, cServiceTxt4, sPic4, sVid4, cService5, cServiceSpunCheckBox5, cServiceTxt5, sPic5, sVid5, cService6, cServiceSpunCheckBox6, cServiceTxt6, sPic6, sVid6, cService7, cServiceSpunCheckBox7, cServiceTxt7, sPic7, sVid7, cService8, cServiceSpunCheckBox8, cServiceTxt8, sPic8, sVid8, cService9, cServiceSpunCheckBox9, cServiceTxt9, sPic9, sVid9, cService10, cServiceSpunCheckBox10, cServiceTxt10, sPic10, sVid10, cLinkName1, cLinkURL1, cLinkName2, cLinkURL2, cLinkName3, cLinkURL3")> ByVal sgtschema As SGTSchemaModel) As ActionResult
         If User.Identity.IsAuthenticated = False Then
             Return RedirectToAction("Login", "Account")
         End If
@@ -154,7 +233,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic2 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic2")
                     ModelState.Add("sPic2", New ModelState())
                     ModelState.SetModelValue("sPic2", New ValueProviderResult(sgtschema.sPic2, sgtschema.sPic2, Nothing))
@@ -165,7 +244,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic3 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic3")
                     ModelState.Add("sPic3", New ModelState())
                     ModelState.SetModelValue("sPic3", New ValueProviderResult(sgtschema.sPic3, sgtschema.sPic3, Nothing))
@@ -176,7 +255,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic4 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic4")
                     ModelState.Add("sPic4", New ModelState())
                     ModelState.SetModelValue("sPic4", New ValueProviderResult(sgtschema.sPic4, sgtschema.sPic4, Nothing))
@@ -187,7 +266,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic5 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic5")
                     ModelState.Add("sPic5", New ModelState())
                     ModelState.SetModelValue("sPic5", New ValueProviderResult(sgtschema.sPic5, sgtschema.sPic5, Nothing))
@@ -198,7 +277,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic6 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic6")
                     ModelState.Add("sPic6", New ModelState())
                     ModelState.SetModelValue("sPic6", New ValueProviderResult(sgtschema.sPic6, sgtschema.sPic6, Nothing))
@@ -209,7 +288,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic7 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic7")
                     ModelState.Add("sPic7", New ModelState())
                     ModelState.SetModelValue("sPic7", New ValueProviderResult(sgtschema.sPic7, sgtschema.sPic7, Nothing))
@@ -220,7 +299,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic8 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic8")
                     ModelState.Add("sPic8", New ModelState())
                     ModelState.SetModelValue("sPic8", New ValueProviderResult(sgtschema.sPic8, sgtschema.sPic8, Nothing))
@@ -231,7 +310,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic9 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic9")
                     ModelState.Add("sPic9", New ModelState())
                     ModelState.SetModelValue("sPic9", New ValueProviderResult(sgtschema.sPic9, sgtschema.sPic9, Nothing))
@@ -242,7 +321,7 @@ Public Class SGTSchemaController
                 If (file IsNot Nothing And file.ContentLength > 0) Then
                     Dim fileName = System.IO.Path.GetFileName(file.FileName)
                     Dim path = System.IO.Path.Combine(Server.MapPath("~/App_Data/Images/"), subpath + "/" + imagename)
-                    sgtschema.cImage = "~/App_Data/Images/" + subpath + "/" + imagename
+                    sgtschema.sPic10 = "~/App_Data/Images/" + subpath + "/" + imagename
                     ModelState.Remove("sPic10")
                     ModelState.Add("sPic10", New ModelState())
                     ModelState.SetModelValue("sPic10", New ValueProviderResult(sgtschema.sPic10, sgtschema.sPic10, Nothing))
@@ -273,7 +352,8 @@ Public Class SGTSchemaController
             Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
         End If
         Dim sgtschemaToUpdate = db.SGTSchemas.Find(id)
-        If TryUpdateModel(sgtschemaToUpdate, "", New String() {"cbBusiness", "cName", "cDescription", "cUrl", "cHomeContent", "cAddress", "cAddress2", "cCity", "cbCountry", "cUSState", "cAUState", "cCAState", "cUKState", "cZip", "MonFriCheckBox", "MonFriOpen", "MonFriClose", "MonCheckBox", "MonOpen", "MonClose", "TueCheckBox", "TueOpen", "TueClose", "WedCheckBox", "WedOpen", "WedClose", "ThuCheckBox", "ThuOpen", "ThuClose", "FriCheckBox", "FriOpen", "FriClose", "cCity1", "cCity2", "cCity3", "cCity4", "cCity5", "cCity6", "cCity7", "cCity8", "cCity9", "cFB", "cGPlus", "cTwitter", "cLinkedIn", "cYT", "cPinterest", "cYouTube", "cImage", "SchemaCheckBox", "PagesCheckBox", "SpunCheckBox", "cServiceCat", "cService1", "sCat1", "sPic1", "sVid1", "cService2", "sCat2", "sPic2", "sVid2", "cService3", "sCat3", "sPic3", "sVid3", "cService4", "sCat4", "sPic4", "sVid4", "cService5", "sCat5", "sPic5", "sVid5", "cService6", "sCat6", "sPic6", "sVid6", "cService7", "sCat7", "sPic7", "sVid7", "cService8", "sCat8", "sPic8", "sVid8", "cService9", "sCat9", "sPic9", "sVid9", "cService10", "sCat10", "sPic10", "sVid10",
+        If TryUpdateModel(sgtschemaToUpdate, "", New String() {"cbBusiness", "cName", "cDescription", "cUrl", "cAddress", "cAddress2", "cCity", "cbCountry", "cUSState", "cAUState", "cCAState", "cUKState", "cZip", "MonFriCheckBox", "MonFriOpen", "MonFriClose", "MonCheckBox", "MonOpen", "MonClose", "TueCheckBox", "TueOpen", "TueClose", "WedCheckBox", "WedOpen", "WedClose", "ThuCheckBox", "ThuOpen", "ThuClose", "FriCheckBox", "FriOpen", "FriClose", "cCity1", "cCity2", "cCity3", "cCity4", "cCity5", "cCity6", "cCity7", "cCity8", "cCity9", "cFB", "cGPlus", "cTwitter", "cLinkedIn", "cYT", "cPinterest", "cYouTube", "cImage",
+                          "SpunCheckBox", "cServiceCat", "SpunCheckBoxHomePageTxt", "cHomeContent", "cService1", "cServiceSpunCheckBox1", "cServiceTxt1", "sPic1", "sVid1", "cService2", "cServiceSpunCheckBox2", "cServiceTxt2", "sPic2", "sVid2", "cService3", "cServiceSpunCheckBox3", "cServiceTxt3", "sPic3", "sVid3", "cService4", "cServiceSpunCheckBox4", "cServiceTxt4", "sPic4", "sVid4", "cService5", "cServiceSpunCheckBox5", "cServiceTxt5", "sPic5", "sVid5", "cService6", "cServiceSpunCheckBox6", "cServiceTxt6", "sPic6", "sVid6", "cService7", "cServiceSpunCheckBox7", "cServiceTxt7", "sPic7", "sVid7", "cService8", "cServiceSpunCheckBox8", "cServiceTxt8", "sPic8", "sVid8", "cService9", "cServiceSpunCheckBox9", "cServiceTxt9", "sPic9", "sVid9", "cService10", "cServiceSpunCheckBox10", "cServiceTxt10", "sPic10", "sVid10",
                           "cLinkName1", "cLinkURL1", "cLinkName2", "cLinkURL2", "cLinkName3", "cLinkURL3"}) Then
             Try
                 db.Entry(sgtschemaToUpdate).State = EntityState.Modified
