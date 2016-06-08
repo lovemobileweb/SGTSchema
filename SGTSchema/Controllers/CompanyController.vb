@@ -6,7 +6,7 @@ Imports PagedList
 Public Class CompanyController
     Inherits System.Web.Mvc.Controller
 
-    Private db As New CompanyDbContext
+    Private db As New ApplicationDbContext
 
     ' GET: Companies
     Function Index() As ActionResult
@@ -39,7 +39,7 @@ Public Class CompanyController
         Return View(company)
     End Function
 
-    ' POST: Articles/Edit/5
+    ' POST: Company/Edit/5
     'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     <HttpPost(), ActionName("Save")>
@@ -53,7 +53,7 @@ Public Class CompanyController
         Return View("Details", company)
     End Function
 
-    ' GET: Articles/Delete/5
+    ' GET: Company/Delete/5
     Function Delete(ByVal id As Integer?) As ActionResult
         If IsNothing(id) Then
             Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -65,7 +65,7 @@ Public Class CompanyController
         Return View(company)
     End Function
 
-    ' POST: Articles/Delete/5
+    ' POST: Company/Delete/5
     <HttpPost()>
     <ActionName("Delete")>
     <ValidateAntiForgeryToken()>

@@ -372,7 +372,7 @@ Public Class SGTSchemaModel
     <Display(Name:="Address2")>
     Public Property cAddress2 As String
 
-    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
+    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=1)>
     <DataType(DataType.Text)>
     <Display(Name:="City")>
     Public Property cCity As String
@@ -545,6 +545,11 @@ Public Class SGTSchemaModel
     <DataType(DataType.Text)>
     <Display(Name:="City 9")>
     Public Property cCity9 As String
+
+    <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
+    <DataType(DataType.Text)>
+    <Display(Name:="City 10")>
+    Public Property cCity10 As String
 
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <Url>

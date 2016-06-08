@@ -32,6 +32,7 @@ End If
     @Scripts.Render("~/Scripts/jquery-ui-1.11.4.js")
     @Scripts.Render("~/Scripts/bootstrap3-wysihtml5.all.js")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required:=False)
 </body>
 </html>

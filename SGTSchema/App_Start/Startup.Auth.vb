@@ -11,6 +11,7 @@ Partial Public Class Startup
         ' Configure the db context, user manager and signin manager to use a single instance per request
         app.CreatePerOwinContext(AddressOf ApplicationDbContext.Create)
         app.CreatePerOwinContext(Of ApplicationUserManager)(AddressOf ApplicationUserManager.Create)
+        app.CreatePerOwinContext(Of ApplicationRoleManager)(AddressOf ApplicationRoleManager.Create)
         app.CreatePerOwinContext(Of ApplicationSignInManager)(AddressOf ApplicationSignInManager.Create)
 
         ' Enable the application to use a cookie to store information for the signed in user

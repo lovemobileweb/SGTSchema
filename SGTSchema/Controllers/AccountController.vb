@@ -3,6 +3,7 @@ Imports System.Security.Claims
 Imports System.Security.Principal
 Imports System.Threading.Tasks
 Imports Microsoft.AspNet.Identity
+Imports Microsoft.AspNet.Identity.EntityFramework
 Imports Microsoft.AspNet.Identity.Owin
 Imports Microsoft.Owin.Security
 Imports Owin
@@ -54,6 +55,18 @@ Public Class AccountController
     <ValidateAntiForgeryToken>
     Public Async Function Login(model As LoginViewModel, returnUrl As String) As Task(Of ActionResult)
         If Not ModelState.IsValid Then
+            Return View(model)
+        End If
+
+        Dim userManager = System.Web.HttpContext.Current.GetOwinContext().GetUserManager(Of ApplicationUserManager)()
+        Dim roleManager = System.Web.HttpContext.Current.GetOwinContext().Get(Of ApplicationRoleManager)()
+        Dim user = userManager.FindByEmail(model.Email)
+        If (user Is Nothing) Then
+            ModelState.AddModelError("", "Invalid login attempt.")
+            Return View(model)
+        End If
+        If (user.Flag = False) Then
+            ModelState.AddModelError("", "Have not accepted your registeration yet.")
             Return View(model)
         End If
 
@@ -118,6 +131,40 @@ Public Class AccountController
     End Function
 
     '
+    ' GET: /Account/Pricing
+    <AllowAnonymous>
+    Public Function Pricing() As ActionResult
+        Return View()
+    End Function
+
+    '
+    ' GET: /Account/Standard
+    <AllowAnonymous>
+    Public Function Standard() As ActionResult
+        Dim model = New RegisterViewModel()
+        model.Role = "Standard"
+        Return View("Register", model)
+    End Function
+
+    '
+    ' GET: /Account/Premium
+    <AllowAnonymous>
+    Public Function Premium() As ActionResult
+        Dim model = New RegisterViewModel()
+        model.Role = "Premium"
+        Return View("Register", model)
+    End Function
+
+    '
+    ' GET: /Account/Enterprise
+    <AllowAnonymous>
+    Public Function Enterprise() As ActionResult
+        Dim model = New RegisterViewModel()
+        model.Role = "Enterprise"
+        Return View("Register", model)
+    End Function
+
+    '
     ' GET: /Account/Register
     <AllowAnonymous>
     Public Function Register() As ActionResult
@@ -134,11 +181,19 @@ Public Class AccountController
             Dim user = New ApplicationUser() With {
                 .UserName = model.Email,
                 .Email = model.Email,
-                .FullName = model.Nickname
+                .FullName = model.Nickname,
+                .Flag = False
             }
+
             Dim result = Await UserManager.CreateAsync(user, model.Password)
             If result.Succeeded Then
-                Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
+                'Await SignInManager.SignInAsync(user, isPersistent:=False, rememberBrowser:=False)
+
+                Dim userManager = System.Web.HttpContext.Current.GetOwinContext().GetUserManager(Of ApplicationUserManager)()
+                Dim rolesForUser = userManager.GetRoles(user.Id)
+                If (rolesForUser.Contains(model.Role) = False) Then
+                    userManager.AddToRole(user.Id, model.Role)
+                End If
 
                 ' For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 ' Send an email with this link

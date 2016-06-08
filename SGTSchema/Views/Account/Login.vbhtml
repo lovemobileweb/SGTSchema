@@ -8,7 +8,7 @@ End Code
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>SGTSchema</b></a>
+        <a href="#"><img src="~/Content/images/SGT-logo.jpg" height="150" width="300"></a>
     </div>
     <div class="login-box-body">
         <section id="loginForm">
@@ -40,7 +40,7 @@ End Code
                             <Button type="submit" Class="btn btn-primary btn-block btn-flat">Sign In</Button>
                         </div><!-- /.col -->
                     </div>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @Html.ActionLink("Register as a new user", "Pricing")
                     <!--a href = "register.html" Class="text-center">Register a New membership</a-->
                 </text>
             End Using

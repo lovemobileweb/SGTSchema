@@ -31,9 +31,3 @@ Public Class CompanyModel
     Public Property Longitude As String
 
 End Class
-
-Public Class CompanyDbContext
-    Inherits DbContext
-
-    Public Property Companies As DbSet(Of CompanyModel)
-End Class

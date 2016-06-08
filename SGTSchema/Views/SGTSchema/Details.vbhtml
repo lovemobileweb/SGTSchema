@@ -70,13 +70,6 @@ End Code
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(Function(m) m.cCity, New With {.class = "col-md-2 control-label"})
-            <div class="col-md-10">
-                @Html.TextBoxFor(Function(m) m.cCity, New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(m) m.cCity, "", New With {.class = "text-danger"})
-            </div>
-        </div>
-        <div class="form-group">
             @Html.LabelFor(Function(m) m.cbCountry, New With {.class = "col-md-2 control-label"})
             <div class="col-md-2">
                 @Html.DropDownListFor(Function(m) m.cbCountry, New SelectList([Enum].GetValues(GetType(Country))), "Select ...", New With {.class = "my-country form-control", .onchange = "onSelectCountry(this)"})
@@ -733,6 +726,13 @@ End Code
                 @Html.ValidationMessageFor(Function(m) m.cLinkURL3, "", New With {.class = "text-danger"})
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(m) m.cCity, New With {.class = "col-md-2 control-label"})
+            <div class="col-md-10">
+                @Html.DropDownListFor(Function(m) m.cCity, DirectCast(ViewBag.CityList, IEnumerable(Of SelectListItem)), "-- Select City --", New With {.class = "form-control"})
+                @Html.ValidationMessageFor(Function(m) m.cCity, "", New With {.class = "text-danger"})
+            </div>
+        </div>
         <div Class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -846,6 +846,88 @@ End Code
             onClickTimeCheck({ data:  { check: 'SunCheckBox', open: 'SunOpen', close: 'SunClose' } });
         }
         $(function () { // will trigger when the document is ready
+            // Iterate over each select element
+            $('#cCity').each(function () {
+
+                // Cache the number of options
+                var $this = $(this),
+                    numberOfOptions = $(this).children('option').length;
+
+                // Hides the select element
+                $this.addClass('s-hidden');
+
+                // Wrap the select element in a div
+                $this.wrap('<div class="select col-md-12"></div>');
+
+                // Insert a styled div to sit over the top of the hidden select element
+                $this.after('<div class="styledSelect"></div>');
+
+                // Cache the styled div
+                var $styledSelect = $this.next('div.styledSelect');
+
+                // Show the first select option in the styled div
+                $styledSelect.text($this.children('option').eq(0).text());
+                var headingStr = "<b><div class='row'><div class='col-md-4'>City</div><div class='col-md-2'>State</div><div class='col-md-1'>Country</div><div class='col-md-1'>Radius</div><div class='col-md-1'>Max #</div><div class='col-md-3'>Population</div></div></b>";
+                //$styledSelect.html(headingStr);
+
+                // Insert an unordered list after the styled div and also cache the list
+                var $list = $('<ul />', {
+                    'class': 'options'
+                }).insertAfter($styledSelect);
+
+                // Insert a list item into the unordered list for each select option
+                var selectedIndex = 0;
+                for (var i = 0; i < numberOfOptions; i++) {
+                    var str = $this.children('option').eq(i).html();
+                    if ($this.children('option').eq(i).attr('selected') == "selected")
+                    {
+                        selectedIndex = i;
+                    }
+                    if (str == "-- Select City --")
+                    {
+                        str = headingStr;
+                    }
+                    $('<li />', {
+                        html: str.replace(/&lt;/g, "<").replace(/&gt;/g, ">"),
+                        rel: $this.children('option').eq(i).val()
+                    }).appendTo($list);
+                }
+
+                // Cache the list items
+                var $listItems = $list.children('li');
+
+                // Show the unordered list when the styled div is clicked (also hides it if the div is clicked again)
+                $styledSelect.click(function (e) {
+                    e.stopPropagation();
+                    $('div.styledSelect.active').each(function () {
+                        $(this).removeClass('active').next('ul.options').hide();
+                    });
+                    $(this).toggleClass('active').next('ul.options').toggle();
+                });
+
+                // Hides the unordered list when a list item is clicked and updates the styled div to show the selected list item
+                // Updates the select element to have the value of the equivalent option
+                $listItems.click(function (e) {
+                    e.stopPropagation();
+                    var str = $(this).html();
+                    if ($(this).attr('rel') == "")
+                        str = "-- Select City --";
+                    $styledSelect.html(str).removeClass('active');
+                    $this.val($(this).attr('rel'));
+                    $list.hide();
+                    /* alert($this.val()); Uncomment this for demonstration! */
+                });
+
+                $listItems[selectedIndex].click();
+
+                // Hides the unordered list when clicking outside of it
+                $(document).click(function () {
+                    $styledSelect.removeClass('active');
+                    $list.hide();
+                });
+
+            });
+
             $('.timepicker').timepicker({
                 hourGrid: 4,
                 minuteGrid: 10,

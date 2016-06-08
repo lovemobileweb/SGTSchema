@@ -3,29 +3,37 @@
 ViewData("Title") = "Index"
 End Code
 
-<h2>Index</h2>
+<section class="content-header">
+    <h1>
+        Articles
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">JSON-LD Generator</li>
+    </ol>
+</section>
+<section class="content">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Niche)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Function(model) model.Spin)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Niche)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Spin)
-        </th>
-        <th></th>
-    </tr>
-
-@For Each item In Model
+        @For Each item In Model
     @<tr>
         <td>
             @Html.DisplayFor(Function(modelItem) item.Niche)
@@ -40,11 +48,12 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.Spin)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID })
+            @Html.ActionLink("Edit", "Edit", New With {.id = item.ID}) |
+            @Html.ActionLink("Details", "Details", New With {.id = item.ID}) |
+            @Html.ActionLink("Delete", "Delete", New With {.id = item.ID})
         </td>
     </tr>
-Next
+        Next
 
-</table>
+    </table>
+</section>

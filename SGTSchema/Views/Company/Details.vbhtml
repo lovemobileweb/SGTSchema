@@ -11,9 +11,17 @@
     End If
 End Code
 
-<h2>Details</h2>
-
-@Using Html.BeginForm(FuncName, "Company", FormMethod.Post, New With {.class = "form-horizontal", .role = "form"})
+<section class="content-header">
+    <h1>
+        Details
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">JSON-LD Generator</li>
+    </ol>
+</section>
+<section class="content">
+    @Using Html.BeginForm(FuncName, "Company", FormMethod.Post, New With {.class = "form-horizontal", .role = "form"})
     @Html.AntiForgeryToken()
 
     @<div class="form-horizontal">
@@ -62,28 +70,28 @@ End Code
             </div>
         </div>
 
-         <div class="form-group">
-             @Html.Label(" ", htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-2">
-                 <input id="GetGeolocation" type="button" value="Get Geolocation" class="btn btn-default"/>
-             </div>
-         </div>
+        <div class="form-group">
+            @Html.Label(" ", htmlAttributes:=New With {.class = "control-label col-md-2"})
+            <div class="col-md-2">
+                <input id="GetGeolocation" type="button" value="Get Geolocation" class="btn btn-default" />
+            </div>
+        </div>
 
-         <div class="form-group">
-             @Html.LabelFor(Function(model) model.Latitude, htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-10">
-                 @Html.TextBoxFor(Function(model) model.Latitude, New With {.class = "form-control", .readonly = "readonly"})
-                 @Html.ValidationMessageFor(Function(model) model.Latitude)
-             </div>
-         </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(model) model.Latitude, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(Function(model) model.Latitude, New With {.class = "form-control", .readonly = "readonly"})
+                @Html.ValidationMessageFor(Function(model) model.Latitude)
+            </div>
+        </div>
 
-         <div class="form-group">
-             @Html.LabelFor(Function(model) model.Longitude, htmlAttributes:=New With {.class = "control-label col-md-2"})
-             <div class="col-md-10">
-                 @Html.TextBoxFor(Function(model) model.Longitude, New With {.class = "form-control", .readonly = "readonly"})
-                 @Html.ValidationMessageFor(Function(model) model.Longitude)
-             </div>
-         </div>
+        <div class="form-group">
+            @Html.LabelFor(Function(model) model.Longitude, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(Function(model) model.Longitude, New With {.class = "form-control", .readonly = "readonly"})
+                @Html.ValidationMessageFor(Function(model) model.Longitude)
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -91,11 +99,12 @@ End Code
             </div>
         </div>
     </div>
-End Using
+    End Using
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</section>
 
 @Section Scripts
     @Scripts.Render("~/bundles/jqueryval")

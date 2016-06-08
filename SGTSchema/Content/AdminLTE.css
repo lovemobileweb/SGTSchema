@@ -3171,7 +3171,8 @@ table.text-center th {
  * ----------------------
  */
 .login-logo,
-.register-logo {
+.register-logo,
+.pricing-logo {
   font-size: 35px;
   text-align: center;
   margin-bottom: 25px;
@@ -3190,19 +3191,28 @@ table.text-center th {
   width: 360px;
   margin: 7% auto;
 }
+.pricing-box {
+  width: 800px;
+  margin: 5% auto;
+}
 @media (max-width: 768px) {
   .login-box,
-  .register-box {
+  .register-box,
+  .pricing-box {
     width: 90%;
     margin-top: 20px;
   }
 }
 .login-box-body,
-.register-box-body {
+.register-box-body,
+.pricing-box-body {
   background: #ddd;
   padding: 20px;
   border-top: 0;
   color: #666;
+}
+.pricing-box-body {
+  overflow: hidden;
 }
 .login-box-body .form-control-feedback,
 .register-box-body .form-control-feedback {

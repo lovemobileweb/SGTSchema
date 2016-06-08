@@ -108,6 +108,20 @@ Public Class SGTSchemaController
         ViewBag.NicheList = New SelectList(ListItem, "Value", "Text", "")
         Dim ListItem2 As List(Of SelectListItem) = New List(Of SelectListItem)
         ViewBag.ArticleList = New SelectList(ListItem2, "Value", "Text", "")
+        Dim ListItem3 As List(Of SelectListItem) = New List(Of SelectListItem)
+        ViewBag.CityList = New SelectList(ListItem3, "Value", "Text", "")
+
+        Dim str = GetUserId()
+        Dim query3 = From city In db.Cities
+                     Where city.UserId = str
+                     Select New With {.Id = city.Id, .UserId = city.UserId, .City = city.City, .State = city.State, .Country = city.Country, .Population = city.Population, .Radius = city.Radius, .SurroundingCity = city.SurroundingCity, .SurroundingState = city.SurroundingState, .MaxToSelect = city.MaxToSelect}
+
+        For Each city In query3
+            str = "<div class='row'><div class='col-md-4'>" + city.City + "</div><div class='col-md-2'>" + city.State + "</div><div class='col-md-1'>" + city.Country + "</div><div class='col-md-1'>" + city.Radius.ToString() + "</div><div class='col-md-1'>" + city.MaxToSelect.ToString() + "</div><div class='col-md-3'>" + CityModel.GetSpopulation(city.Population) + "</div></div>"
+            ListItem3.Add(New SelectListItem With {.Text = str, .Value = city.Id})
+        Next
+
+        ViewBag.CityList = New SelectList(ListItem3, "Value", "Text", "")
 
         If IsNothing(id) Then
             Return View()

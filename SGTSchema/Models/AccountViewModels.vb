@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class ExternalLoginConfirmationViewModel
     <Required>
@@ -20,13 +21,13 @@ End Class
 Public Class VerifyCodeViewModel
     <Required>
     Public Property Provider As String
-    
+
     <Required>
     <Display(Name:="Code")>
     Public Property Code As String
-    
+
     Public Property ReturnUrl As String
-    
+
     <Display(Name:="Remember this browser?")>
     Public Property RememberBrowser As Boolean
 
@@ -55,6 +56,10 @@ Public Class LoginViewModel
 End Class
 
 Public Class RegisterViewModel
+    <Required>
+    <NotMapped>
+    Public Property Role As String
+
     <Required>
     <StringLength(100, ErrorMessage:="The {0} must be at least {2} characters long.", MinimumLength:=2)>
     <DataType(DataType.Text)>

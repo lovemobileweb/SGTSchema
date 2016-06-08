@@ -1,10 +1,11 @@
 ﻿@ModelType RegisterViewModel
 @Code
     ViewBag.Title = "Register"
+    Dim membershipLabel = "<p Class='login-box-msg'>Register a New <b>" + Model.Role.ToString() + "</b> membership</p>"
 End Code
 
 <div class="register-box">
-    <div class="login-logo">
+    <div class="register-logo">
         <a href="#"><b>SGTSchema</b></a>
     </div>
     <div class="register-box-body">
@@ -12,8 +13,12 @@ End Code
             @Using Html.BeginForm("Register", "Account", FormMethod.Post, New With {.role = "form"})
                 @Html.AntiForgeryToken()
                 @<text>
-                    <p class="login-box-msg">Register a new membership</p>
+                    @Html.Raw(membershipLabel)
                     @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+                    <div class="form-group has-feedback">
+                        @Html.HiddenFor(Function(m) m.Role)
+                        @Html.ValidationMessageFor(Function(m) m.Role, "", New With {.class = "text-danger"})
+                    </div>
                     <div class="form-group has-feedback">
                         @Html.TextBoxFor(Function(m) m.Nickname, New With {.class = "form-control", .placeholder = "Full name"})
                         @Html.ValidationMessageFor(Function(m) m.Nickname, "", New With {.class = "text-danger"})

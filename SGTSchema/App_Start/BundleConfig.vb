@@ -21,7 +21,24 @@ Public Module BundleConfig
 
         bundles.Add(New StyleBundle("~/Content/css").Include(
                   "~/Content/bootstrap.css",
-                  "~/Content/site.css"))
+                  "~/Content/site.css",
+                  "~/Content/ladda-bootstrap-master/dist/ladda-themeless.css",
+                  "~/Content/font-awesome.min.css",
+                  "~/Content/ionicons.min.css",
+                  "~/Content/plugins/datatables/dataTables.bootstrap.css",
+                  "~/Content/AdminLTE.css",
+                  "~/Content/skins/skin-blue.css"))
+
+        bundles.Add(New ScriptBundle("~/bundles/scripts").Include(
+                  "~/Scripts/ims.js",
+                  "~/Scripts/app.js",
+                  "~/Scripts/jquery.validate*",
+                  "~/Scripts/jquery.unobtrusive*",
+                  "~/Content/datatables/jquery.dataTables.js",
+                  "~/Content/datatables/dataTables.bootstrap.js",
+                  "~/Content/ladda-bootstrap-master/dist/spin.js",
+                  "~/Content/ladda-bootstrap-master/dist/ladda.js"))
+
     End Sub
 End Module
 
